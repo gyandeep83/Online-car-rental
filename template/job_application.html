@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job</title>
+</head>
+<body>
+    <h2>Apply for Job</h2>
+    <p>You are applying for a job at {{ company_name }}.</p>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+        <label for="email">Your Email:</label>
+        <input type="email" name="email" id="email" required>
+        <br>
+        <label for="phone">Your Phone Number:</label>
+        <input type="text" name="phone" id="phone" required>
+        <br>
+        <label for="cover_letter">Cover Letter:</label><br>
+        <textarea name="cover_letter" id="cover_letter" cols="30" rows="5" required></textarea>
+        <br>
+        <label for="resume">Upload Resume:</label>
+        <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx" required>
+        <br>
+        <button type="submit">Submit Application</button>
+    </form>
+</body>
+</html>

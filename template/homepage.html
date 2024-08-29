@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Website</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<style>
+    /* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --main-color: #fe5b3d;
+    --second-color: #ffac38;
+    --text-color: #444;
+    --gradient: linear-gradient(#fe5b3d, #ffac38);
+}
+/* Custom Scroll Bar */
+html::-webkit-scrollbar {
+    width: 0.5rem;
+}
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+    background:var(--main-color);
+    border-radius: 5rem;
+}
+section {
+    padding: 50px 100px;
+}
+header {
+    position:fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #eeeff1;
+    padding: 15px 100px;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.navbar {
+    display: flex;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    font-size: 1rem;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.navbar a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: var(--gradient);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: 0.5s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+#menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+.header-btn a {
+    padding: 10px 20px;
+    color:var(--text-color);
+    font-weight: 500;
+}
+
+.header-btn .sign-in {
+    background: #474fa0;
+    color:#fff;
+    border-radius:0.5rem ;
+}
+.header-btn .sign-in:hover {
+    background: var(--main-color);
+}
+.home {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background:url(/static/poster.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+}
+.text h1{
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    line-height: 60px;
+}
+.text span {
+    color: var(--main-color);
+}
+.text p {
+    margin: 00.5rem 0 1rem;
+}
+.app-store {
+    display: flex;
+}
+.app-store img{
+    width: 100px;
+    margin: 1rem;
+    cursor: pointer;
+}
+.form-container form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    bottom: 4rem;
+    left: 100px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 0.5rem;
+}
+
+.input-box{
+    flex: 1 1 7rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box span{
+    font-weight: 500;
+}
+.input-box input{
+    padding: 7px;
+    outline: none;
+    border: none;
+    background: #eeeff1;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+.form-container form .btn{
+    flex: 1 1 7rem;
+    padding: 10px 34px;
+    border: none;
+    border-radius: 0.5rem;
+    background: #474fa0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.form-container form .btn:hover{
+    background: var(--main-color);
+}
+.heading{
+    text-align: center;
+}
+.heading span{
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.heading h1{
+    font-size: 2rem;
+}
+.ride-container{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit,minmax(250px,auto));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.ride-container .box{
+    text-align: center;
+    padding: 20px;
+}
+.ride-container .box .bx{
+    font-size: 34px;
+    padding: 10px;
+    background: #eeeff1;
+    border-radius: 0.5rem;
+    color: var(--main-color);
+}
+.ride-container .box h2{
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 1.4rem 0 0.5rem;
+}
+.ride-container .box .bx:hover,
+.ride-container .bx .bxs-calendar-star{
+    background: var(--gradient);
+    color: #fff;
+}
+.services-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(300px,auto));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.services-container .box{
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 1px 4px 41p rgba(0, 0, 0, 0.1);
+}
+.services-container .box .box-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: center;
+}
+.services-container .box p{
+    padding: 0 10px;
+    border-radius: 1px solid var(--text-color);
+    width: 58px;
+    border-radius: 0.5rem;
+    margin: 1rem 0 1rem;
+}
+.services-container .box h3{
+    font-weight: 300;
+}
+.services-container .box h2{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin: 0.2rem 0 0.5rem;
+}
+.services-container .box .btn{
+    display: flex;
+    justify-content: center;
+    background: #474fa0;
+    color: #fff;
+    padding: 10px;
+    border-radius: 0.5rem;
+}
+.services-container .box .btn:hover{
+    background: var(--main-color);
+}
+.about-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 2rem;
+    align-items: center;
+    gap: 1rem;
+}
+.about-img img{
+    width: 100%;
+}
+.about-text span{
+    font-weight: 500;
+    color:var(--main-color);
+    text-transform: uppercase;
+}
+.about-text p{
+    margin:0.5rem 0 1.4rem
+}
+.about-container .btn{
+    padding: 10px 20px;
+    background: #474fa0;
+    color: #fff;
+    border-radius: 0.5rem;
+}
+.about-container .btn:hover{
+    background: var(--main-color);
+}
+</style>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo"><img src="/static/car logo 2.png" alt="logo"></a>
+
+        <div class="box-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#ride">Ride</a></li>
+            <li><a href=#services>services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href={% url 'feedback' %}>feedback and reviews</a></li>
+
+        </ul>
+        
+        <div class="header-btn">
+            <a href={% url 'signup_view' %} class="sign-in">Sign In</a>
+        </div>
+        
+    </header>
+    <!-- Home -->
+    <section class="home" id="home">
+        <div class="text">
+            <h1><span>Looking</span> to <br>rent a car</h1>
+            <p>Our extensive network means you can pick up and drop off your rental vehicle at multiple locations, giving you the freedom to explore without boundaries.</p>
+            <div class="app-store">
+                <img src="/static/ios.png" alt="ratings">
+                <img src="/static/play.png" alt="ratings">
+            </div>
+        </div>
+        <div class="form-container">
+            <form action="">
+                <div class="input-box">
+                    <span>location</span>
+                    <input type="search" name="" id="" placeholder="Search places">
+                </div>
+                <div class="input-box">
+                    <span>Pick-up Date</span>
+                    <input type="date" name="" id="">
+                </div>
+                <div class="input-box">
+                    <span>Return Date</span>
+                    <input type="date" name="" id="">
+                </div>
+                <input type="submit" name="" id="" class="btn">
+            </form>
+        </div>
+    </section>
+    <section class="ride" id="ride">
+        <div class="heading">
+            <span>How it's Work</span>
+            <h1>Rent with 3 Easy Steps</h1>
+        </div>
+        <div class="ride-container">
+            <div class="box">
+                <i class ='bx bxs-map'></i>
+                <h2>Choose a location</h2>
+                <p>Choose your location — whether it's a weekend getaway,
+                   business trip, or family vacation.
+                </p>
+            </div>
+            <div class="box">
+                <i class='bx bxs-calendar-check'></i>
+                <h2>Pick-Up Date</h2>
+                <p>Explore available dates effortlessly with our intuitive calendar,
+                   ensuring flexibility for your schedule.
+                </p>
+            </div>
+            <div class="box">
+                <i class ='bx bxs-calendar-star'></i>
+                <h2>Book a Car</h2>
+                <p>Our extensive fleet offers on a variety of vehicles to cater to your
+                   preferences and requirements. 
+                </p>
+            </div>
+        </div>
+        </section>
+        <!-- services -->
+    <section class="services" id="services"> 
+        <div class="heading">
+            <span>Best Services</span>
+            <h1>Explore out of Top Deals <br> From Top Rated dealers</h1>
+        </div>
+        <div class="services-container">
+            {% for car in cars %}
+            <div class="box">
+                <div class="box-img">
+                    <img src="{{ car.imagepath }}" alt="not found">
+                </div>
+                <h3>{{ car.car_name }}</h3>
+                <h2>₹ {{ car.rent }} <span>/month</span></h2>
+                <a href="{% url 'car_details' car.car_id %}" method="get" class="btn">More Details</a>
+            </div>
+            {% endfor %}
+        </div>
+            </section>
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="heading">
+            <span>About Us</span>
+            <h1>World's Best Customer Experience</h1>
+        </div>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="/static/about-us-img.jpg" alt="car-img">
+            </div>
+            <div class="about-text">
+                <span>About Us</span>
+                <p>Welcome to our Company , where seamless travel meets unmatched service.
+                   we redefine your journey with a premium fleet of meticulously maintained vehicles,
+                   transparent pricing, and a commitment to your satisfaction. From business trips to family getaways, 
+                   trust us to elevate your travel experience. Drive with confidence; drive with our Company . 
+                </p>
+            </div>
+        </div>
+    <!-- link to Javascript -->
+</body>
+</html>
